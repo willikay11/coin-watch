@@ -9,17 +9,17 @@
   <ion-list>
 
 
-    <ion-item>
+    <ion-item *ngFor="let coin of coins">
         <ion-grid>
             <ion-row>
                 <ion-col>
-                    <h2><strong>BitCoin</strong></h2>
+                    <h2><strong>{{ coin.name }}</strong></h2>
                     <p>BTC</p>
                 </ion-col>
                 <ion-col>
                     <ion-row>
                         <ion-col style="text-align: left">
-                            <span class="list-span"><strong>23,784.65</strong></span>
+                            <span class="list-span"><strong>{{ coin.price_usd}}</strong></span>
                             <span>Vol 3.27B</span>
                         </ion-col>
                         <ion-col style="text-align: right">
@@ -32,206 +32,6 @@
         </ion-grid>
 
     </ion-item>
-
-
-      <ion-item>
-          <ion-grid>
-              <ion-row>
-                  <ion-col>
-                      <h2><strong>BitCoin</strong></h2>
-                      <p>BTC</p>
-                  </ion-col>
-                  <ion-col>
-                      <ion-row>
-                          <ion-col style="text-align: left">
-                              <span class="list-span"><strong>23,784.65</strong></span>
-                              <span>Vol 3.27B</span>
-                          </ion-col>
-                          <ion-col style="text-align: right">
-                              <span class="list-span" style="color: green"><strong>0.07%</strong></span>
-                              <span style="color: green">+ 2.1</span>
-                          </ion-col>
-                      </ion-row>
-                  </ion-col>
-              </ion-row>
-          </ion-grid>
-
-      </ion-item>
-
-
-      <ion-item>
-          <ion-grid>
-              <ion-row>
-                  <ion-col>
-                      <h2><strong>BitCoin</strong></h2>
-                      <p>BTC</p>
-                  </ion-col>
-                  <ion-col>
-                      <ion-row>
-                          <ion-col style="text-align: left">
-                              <span class="list-span"><strong>23,784.65</strong></span>
-                              <span>Vol 3.27B</span>
-                          </ion-col>
-                          <ion-col style="text-align: right">
-                              <span class="list-span" style="color: green"><strong>0.07%</strong></span>
-                              <span style="color: green">+ 2.1</span>
-                          </ion-col>
-                      </ion-row>
-                  </ion-col>
-              </ion-row>
-          </ion-grid>
-
-      </ion-item>
-
-
-      <ion-item>
-          <ion-grid>
-              <ion-row>
-                  <ion-col>
-                      <h2><strong>BitCoin</strong></h2>
-                      <p>BTC</p>
-                  </ion-col>
-                  <ion-col>
-                      <ion-row>
-                          <ion-col style="text-align: left">
-                              <span class="list-span"><strong>23,784.65</strong></span>
-                              <span>Vol 3.27B</span>
-                          </ion-col>
-                          <ion-col style="text-align: right">
-                              <span class="list-span" style="color: green"><strong>0.07%</strong></span>
-                              <span style="color: green">+ 2.1</span>
-                          </ion-col>
-                      </ion-row>
-                  </ion-col>
-              </ion-row>
-          </ion-grid>
-
-      </ion-item>
-
-
-      <ion-item>
-          <ion-grid>
-              <ion-row>
-                  <ion-col>
-                      <h2><strong>BitCoin</strong></h2>
-                      <p>BTC</p>
-                  </ion-col>
-                  <ion-col>
-                      <ion-row>
-                          <ion-col style="text-align: left">
-                              <span class="list-span"><strong>23,784.65</strong></span>
-                              <span>Vol 3.27B</span>
-                          </ion-col>
-                          <ion-col style="text-align: right">
-                              <span class="list-span" style="color: green"><strong>0.07%</strong></span>
-                              <span style="color: green">+ 2.1</span>
-                          </ion-col>
-                      </ion-row>
-                  </ion-col>
-              </ion-row>
-          </ion-grid>
-
-      </ion-item>
-
-
-      <ion-item>
-          <ion-grid>
-              <ion-row>
-                  <ion-col>
-                      <h2><strong>BitCoin</strong></h2>
-                      <p>BTC</p>
-                  </ion-col>
-                  <ion-col>
-                      <ion-row>
-                          <ion-col style="text-align: left">
-                              <span class="list-span"><strong>23,784.65</strong></span>
-                              <span>Vol 3.27B</span>
-                          </ion-col>
-                          <ion-col style="text-align: right">
-                              <span class="list-span" style="color: green"><strong>0.07%</strong></span>
-                              <span style="color: green">+ 2.1</span>
-                          </ion-col>
-                      </ion-row>
-                  </ion-col>
-              </ion-row>
-          </ion-grid>
-
-      </ion-item>
-
-
-      <ion-item>
-          <ion-grid>
-              <ion-row>
-                  <ion-col>
-                      <h2><strong>BitCoin</strong></h2>
-                      <p>BTC</p>
-                  </ion-col>
-                  <ion-col>
-                      <ion-row>
-                          <ion-col style="text-align: left">
-                              <span class="list-span"><strong>23,784.65</strong></span>
-                              <span>Vol 3.27B</span>
-                          </ion-col>
-                          <ion-col style="text-align: right">
-                              <span class="list-span" style="color: green"><strong>0.07%</strong></span>
-                              <span style="color: green">+ 2.1</span>
-                          </ion-col>
-                      </ion-row>
-                  </ion-col>
-              </ion-row>
-          </ion-grid>
-
-      </ion-item>
-
-
-      <ion-item>
-          <ion-grid>
-              <ion-row>
-                  <ion-col>
-                      <h2><strong>BitCoin</strong></h2>
-                      <p>BTC</p>
-                  </ion-col>
-                  <ion-col>
-                      <ion-row>
-                          <ion-col style="text-align: left">
-                              <span class="list-span"><strong>23,784.65</strong></span>
-                              <span>Vol 3.27B</span>
-                          </ion-col>
-                          <ion-col style="text-align: right">
-                              <span class="list-span" style="color: green"><strong>0.07%</strong></span>
-                              <span style="color: green">+ 2.1</span>
-                          </ion-col>
-                      </ion-row>
-                  </ion-col>
-              </ion-row>
-          </ion-grid>
-
-      </ion-item>
-
-
-      <ion-item>
-          <ion-grid>
-              <ion-row>
-                  <ion-col>
-                      <h2><strong>BitCoin</strong></h2>
-                      <p>BTC</p>
-                  </ion-col>
-                  <ion-col>
-                      <ion-row>
-                          <ion-col style="text-align: left">
-                              <span class="list-span"><strong>23,784.65</strong></span>
-                              <span>Vol 3.27B</span>
-                          </ion-col>
-                          <ion-col style="text-align: right">
-                              <span class="list-span" style="color: green"><strong>0.07%</strong></span>
-                              <span style="color: green">+ 2.1</span>
-                          </ion-col>
-                      </ion-row>
-                  </ion-col>
-              </ion-row>
-          </ion-grid>
-
-      </ion-item>
 
   </ion-list>
 
