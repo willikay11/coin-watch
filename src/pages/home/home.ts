@@ -10,6 +10,7 @@ import 'rxjs/add/operator/map';
 export class HomePage {
 
   coins: any;
+  nextData: any;
   nextPage: any;
 
   constructor(public navCtrl: NavController, public http: Http, public loadingCtrl: LoadingController) {
@@ -34,16 +35,27 @@ export class HomePage {
     });
   }
 
-  doInfinite(infiniteScroll) {
-    this.http.get('/coin-watch-server/api/coins' + this.nextPage)
-        .map(res => res.json())
-        .subscribe(data => {
-          this.nextPage = data.next_page_url;
-            console.log(data.data);
-            console.log(this.nextPage);
-        });
 
-    infiniteScroll.complete();
+  doInfinite(): Promise<any> {
+
+    return new Promise((resolve) => {
+
+      this.http.get('/coin-watch-server/api/coins' + this.nextPage)
+          .map(res => res.json())
+          .subscribe(data => {
+
+            this.nextData = Object.keys(data.data).map(function(key) {
+              return data.data[key];
+            });
+
+            this.coins = this.coins.concat(this.nextData);
+
+            this.nextPage = data.next_page_url;
+
+            resolve();
+
+          });
+    })
   }
 
 }
