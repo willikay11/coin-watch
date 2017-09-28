@@ -5,11 +5,9 @@
   Ionic pages and navigation.
 -->
 <ion-header>
-
-  <ion-navbar>
-    <ion-title>{{ coinName }}</ion-title>
-  </ion-navbar>
-
+    <ion-navbar color="toolbar">
+        <ion-title style="color: white">{{ coinName }}</ion-title>
+    </ion-navbar>
 </ion-header>
 
 
@@ -19,6 +17,22 @@
     </ion-card-header>
     <ion-card-content>
       <canvas #lineCanvas></canvas>
+        <ion-row col-12>
+            <ion-col style="text-align: center">
+                <span style="font-size: 14px; color: grey; display: block;">LAST PRICE</span>
+                <span style="font-size: 32px;">$ {{ last }}</span>
+            </ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col style="text-align: center">
+                <span style="display: block; font-size: 10px; color: grey">24h HIGH</span>
+                <span style="color: green; font-size: 18px">$ {{ max }}</span>
+            </ion-col>
+            <ion-col style="text-align: center">
+                <span style="display: block; font-size: 10px; color: grey">24h LOW</span>
+                <span style="color: red; font-size: 18px">$ {{ min }}</span>
+            </ion-col>
+        </ion-row>
     </ion-card-content>
 
 </ion-content>

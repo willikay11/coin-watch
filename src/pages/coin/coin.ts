@@ -1,6 +1,7 @@
 import { Component, ViewChild } from '@angular/core';
 import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
 import { Chart } from 'chart.js';
+import { Http } from '@angular/http';
 
 /**
  * Generated class for the CoinPage page.
@@ -19,12 +20,15 @@ export class CoinPage {
 
   lineChart: any;
 
-  config: any;
+  coinName: null;
+  id: null;
+  coin: any;
 
-  coinName = null;
-  id = null
+  min: any;
+  max: any;
+  last: any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public loadingCtrl: LoadingController) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public loadingCtrl: LoadingController, public http: Http) {
     this.coinName = this.navParams.get('coinName');
     this.id = this.navParams.get('id');
   }
@@ -40,7 +44,16 @@ export class CoinPage {
       ' </div>',
     });
 
-    // loading.present();
+    loading.present();
+    
+    this.http.get('/coin-watch-server/api/coin/'+this.id)
+        .map(res => res.json())
+        .subscribe(data => {
+          loading.dismiss();
+          this.min = data.min;
+          this.max = data.max;
+          this.last = data.last;
+        });
 
     this.lineChart = new Chart(this.lineCanvas.nativeElement, {
           type: 'line',

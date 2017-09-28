@@ -1,33 +1,32 @@
 <ion-header>
-  <ion-navbar>
+  <ion-navbar color="toolbar">
     <ion-title style="text-align: center">Coin Watch</ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content>
 
-  <ion-list>
+  <ion-list no-lines class="list-background">
 
 
-    <button ion-item detail-none *ngFor="let coin of coins" (click)="goToCoinPage(coin)">
+    <button class="list-item" ion-item detail-none *ngFor="let coin of coins" (click)="goToCoinPage(coin)">
         <ion-grid>
             <ion-row>
                 <ion-col>
-                    <h2><strong>{{ coin.name }}</strong></h2>
-                    <p>{{ coin.ticker }}</p>
+                    <h2 style="color: white"><strong>{{ coin.name }}</strong></h2>
+                    <p style="color: white">{{ coin.ticker }}</p>
                 </ion-col>
                 <ion-col>
                     <ion-row >
-                        <ion-col style="text-align: left">
-                            <span class="list-span"><strong>$ {{ coin.price_usd }}</strong></span>
-                            <span>Vol 3.27B</span>
+                        <ion-col style="text-align: left; overflow: hidden">
+                            <span class="list-span" style="color: white"><strong>$ {{ coin.price_usd }}</strong></span>
                         </ion-col>
                         <ion-col style="text-align: right">
-                            <span class="list-span" *ngIf=" coin.change == 'positive'" style="color: green;"><strong>{{ coin.percentage_change }}%</strong></span>
-                            <span class="list-span" *ngIf=" coin.change == 'negative'" style="color: red;"><strong>{{ coin.percentage_change }}%</strong></span>
+                            <span class="list-span" *ngIf=" coin.change == 'positive'" style="color: #68d4c3;"><strong>{{ coin.percentage_change }}%</strong></span>
+                            <span class="list-span" *ngIf=" coin.change == 'negative'" style="color: #e65590;"><strong>{{ coin.percentage_change }}%</strong></span>
                             <span class="list-span" *ngIf=" coin.change == 'no change'" style="color: grey;"><strong>{{ coin.percentage_change }}%</strong></span>
-                            <span *ngIf=" coin.change == 'positive'" style="color: green"> + {{ coin.price_change }} </span>
-                            <span *ngIf=" coin.change == 'negative'" style="color: red"> {{ coin.price_change }}</span>
+                            <span *ngIf=" coin.change == 'positive'" style="color: #68d4c3"> + {{ coin.price_change }} </span>
+                            <span *ngIf=" coin.change == 'negative'" style="color: #e65590"> {{ coin.price_change }}</span>
                             <span *ngIf=" coin.change == 'no change'" style="color: grey"> {{ coin.price_change }}</span>
                         </ion-col>
                     </ion-row>
