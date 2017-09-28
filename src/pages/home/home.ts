@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, LoadingController } from 'ionic-angular';
+import {NavController, LoadingController} from 'ionic-angular';
 import { Http } from '@angular/http';
 import 'rxjs/add/operator/map';
 
@@ -35,7 +35,6 @@ export class HomePage {
     });
   }
 
-
   doInfinite(): Promise<any> {
 
     return new Promise((resolve) => {
@@ -58,4 +57,7 @@ export class HomePage {
     })
   }
 
+    goToCoinPage(coin) {
+        this.navCtrl.push('CoinPage', {coinName: coin.name, id: coin.id});
+    }
 }

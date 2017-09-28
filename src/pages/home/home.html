@@ -9,7 +9,7 @@
   <ion-list>
 
 
-    <ion-item *ngFor="let coin of coins">
+    <button ion-item detail-none *ngFor="let coin of coins" (click)="goToCoinPage(coin)">
         <ion-grid>
             <ion-row>
                 <ion-col>
@@ -17,27 +17,25 @@
                     <p>{{ coin.ticker }}</p>
                 </ion-col>
                 <ion-col>
-                    <ion-row>
+                    <ion-row >
                         <ion-col style="text-align: left">
-                            <span class="list-span"><strong>{{ coin.price_usd }}</strong></span>
+                            <span class="list-span"><strong>$ {{ coin.price_usd }}</strong></span>
                             <span>Vol 3.27B</span>
                         </ion-col>
                         <ion-col style="text-align: right">
-                            <span class="list-span" *ngIf=" coin.change == 'positive'" style="color: green;"><strong>{{ coin.price_change }}%</strong></span>
-                            <span class="list-span" *ngIf=" coin.change == 'negative'" style="color: red;"><strong>{{ coin.price_change }}%</strong></span>
-                            <span class="list-span" *ngIf=" coin.change == 'no change'" style="color: grey;"><strong>{{ coin.price_change }}%</strong></span>
-                            <span *ngIf=" coin.change == 'positive'" style="color: green"> + {{ coin.price_change }}</span>
+                            <span class="list-span" *ngIf=" coin.change == 'positive'" style="color: green;"><strong>{{ coin.percentage_change }}%</strong></span>
+                            <span class="list-span" *ngIf=" coin.change == 'negative'" style="color: red;"><strong>{{ coin.percentage_change }}%</strong></span>
+                            <span class="list-span" *ngIf=" coin.change == 'no change'" style="color: grey;"><strong>{{ coin.percentage_change }}%</strong></span>
+                            <span *ngIf=" coin.change == 'positive'" style="color: green"> + {{ coin.price_change }} </span>
                             <span *ngIf=" coin.change == 'negative'" style="color: red"> {{ coin.price_change }}</span>
                             <span *ngIf=" coin.change == 'no change'" style="color: grey"> {{ coin.price_change }}</span>
-
-                            <!--<span style="color: {{ coin.change === 'positive' ? 'green' : 'red' }}">+ 2.1</span>-->
                         </ion-col>
                     </ion-row>
                 </ion-col>
             </ion-row>
         </ion-grid>
 
-    </ion-item>
+    </button>
 
   </ion-list>
 
