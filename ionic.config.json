@@ -1,6 +1,6 @@
 {
   "name": "coin-watch",
-  "app_id": "",
+  "app_id": "75e49cdb",
   "type": "ionic-angular",
   "integrations": {
     "gulp": {}
@@ -8,8 +8,10 @@
   "watchPatterns": [
     "scss/**/*"
   ],
-  "proxies": [{
-    "path": "/coin-watch-server",
-    "proxyUrl": "http://coin-watch.app"
-  }]
+  "proxies": [
+    {
+      "path": "/coin-watch-server",
+      "proxyUrl": "http://coin-watch.app"
+    }
+  ]
 }
