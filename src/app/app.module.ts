@@ -11,6 +11,19 @@ import { TabsPage } from '../pages/tabs/tabs';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+import { AngularFireModule } from "angularfire2";
+import { AngularFireAuthModule } from 'angularfire2/auth';
+import { RegisterPage } from "../pages/register/register";
+import {LoginPage} from "../pages/login/login";
+
+const firebaseAuth  = {
+  apiKey: "AIzaSyDmj393-JYh_v_6WbMP-_-zgJKxw2DSUes",
+  authDomain: "coin-watch-4bc28.firebaseapp.com",
+  databaseURL: "https://coin-watch-4bc28.firebaseio.com",
+  projectId: "coin-watch-4bc28",
+  storageBucket: "coin-watch-4bc28.appspot.com",
+  messagingSenderId: "634514279862"
+};
 
 @NgModule({
   declarations: [
@@ -18,12 +31,16 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     AboutPage,
     ContactPage,
     HomePage,
-    TabsPage
+    TabsPage,
+    RegisterPage,
+    LoginPage
   ],
   imports: [
     BrowserModule,
     HttpModule,
     IonicModule.forRoot(MyApp),
+    AngularFireModule.initializeApp(firebaseAuth),
+    AngularFireAuthModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -31,7 +48,9 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     AboutPage,
     ContactPage,
     HomePage,
-    TabsPage
+    TabsPage,
+    RegisterPage,
+    LoginPage
   ],
   providers: [
     StatusBar,
