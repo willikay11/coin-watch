@@ -1,7 +1,8 @@
 import { Component, ViewChild } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 import { AngularFireAuth } from 'angularfire2/auth';
-import {HomePage} from "../home/home";
+import {RegisterPage} from "../register/register";
+import {TabsPage} from "../tabs/tabs";
 
 @IonicPage()
 @Component({
@@ -29,18 +30,22 @@ export class LoginPage {
     }
 
     signInUser() {
-        this.fire.auth.signInWithEmailAndPassword(this.user.value + '@domian.xta', this.password.value)
+        this.fire.auth.signInWithEmailAndPassword(this.user.value, this.password.value)
             .then( data => {
                 console.log('got some data', this.fire.auth.currentUser);
                 this.alert('Success! You\'re logged in');
-                this.navCtrl.setRoot( HomePage );
+                this.navCtrl.setRoot( TabsPage );
                 // user is logged in
             })
             .catch( error => {
                 console.log('got an error', error);
                 this.alert(error.message);
-            })
-        console.log('Would sign in with ', this.user.value, this.password.value);
+            });
+    };
+
+    showSignUpPage()
+    {
+        this.navCtrl.setRoot( RegisterPage );
     }
 
 }
