@@ -1,6 +1,8 @@
-import { Component, ViewChild } from '@angular/core';
-import {NavController} from 'ionic-angular';
-import { Chart } from 'chart.js';
+import { Component } from '@angular/core';
+import {NavController, LoadingController} from 'ionic-angular';
+import { Http } from '@angular/http';
+import 'rxjs/add/operator/map';
+
 
 @Component({
   selector: 'page-about',
@@ -8,49 +10,55 @@ import { Chart } from 'chart.js';
 })
 export class AboutPage {
 
-  @ViewChild('lineCanvas') lineCanvas;
+  coins: any;
+  nextData: any;
+  nextPage: any;
 
-  lineChart: any;
+  constructor(public navCtrl: NavController, public http: Http, public loadingCtrl: LoadingController) {
 
-  constructor(public navCtrl: NavController) {
-
-  }
-
-  ionViewDidLoad() {
-
-    this.lineChart = new Chart(this.lineCanvas.nativeElement, {
-
-      type: 'line',
-      data: {
-        labels: ["January", "February", "March", "April", "May", "June", "July"],
-        datasets: [
-          {
-            label: "Bitcoin",
-            fill: false,
-            lineTension: 0.1,
-            backgroundColor: "rgba(75,192,192,0.4)",
-            borderColor: "rgba(75,192,192,1)",
-            borderCapStyle: 'butt',
-            borderDash: [],
-            borderDashOffset: 0.0,
-            borderJoinStyle: 'miter',
-            pointBorderColor: "rgba(75,192,192,1)",
-            pointBackgroundColor: "#fff",
-            pointBorderWidth: 1,
-            pointHoverRadius: 5,
-            pointHoverBackgroundColor: "rgba(75,192,192,1)",
-            pointHoverBorderColor: "rgba(220,220,220,1)",
-            pointHoverBorderWidth: 2,
-            pointRadius: 1,
-            pointHitRadius: 10,
-            data: [65, 59, 80, 81, 56, 55, 40],
-            spanGaps: false,
-          }
-        ]
-      }
-
+    let loading = this.loadingCtrl.create({
+      spinner: 'crescent',
+      content: ' <div class="custom-spinner-container">' +
+      ' <div class="custom-spinner-box">' +
+      '<span>Loading info ...</span>'+
+      '</div>' +
+      ' </div>',
     });
 
+    loading.present();
+
+    this.http.get('/coin-watch-server/api/coins')
+        .map(res => res.json())
+        .subscribe(data => {
+          loading.dismiss();
+          this.coins = data.data;
+          this.nextPage = data.next_page_url;
+        });
   }
 
+  doInfinite(): Promise<any> {
+
+    return new Promise((resolve) => {
+
+      this.http.get('/coin-watch-server/api/coins' + this.nextPage)
+          .map(res => res.json())
+          .subscribe(data => {
+
+            this.nextData = Object.keys(data.data).map(function(key) {
+              return data.data[key];
+            });
+
+            this.coins = this.coins.concat(this.nextData);
+
+            this.nextPage = data.next_page_url;
+
+            resolve();
+
+          });
+    })
+  }
+
+  goToCoinPage(coin) {
+    this.navCtrl.push('CoinPage', {coinName: coin.name, id: coin.id});
+  }
 }

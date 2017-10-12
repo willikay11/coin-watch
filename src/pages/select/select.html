@@ -1,14 +1,26 @@
 <ion-content>
 
-    <h4>Please select atleast 5 coins before you continue</h4>
+    <div class="header-text">
+        <p>Please select atleast 5 coins before you continue</p>
+    </div>
+
+    <div class="search-container">
+        <ion-item>
+            <ion-input class="search-input" type="email" (keyup)="searchTerm$.next($event.target.value)" placeholder="Email Input"></ion-input>
+        </ion-item>
+    </div>
+
 
     <ion-list no-lines class="list-background">
 
-        <button class="list-select-coin" ion-item detail-none *ngFor="let coin of coins" (click)="selectCoin(coin)">
-            <ion-grid>
+        <button class="list-button" ion-item detail-none *ngFor="let coin of coins" (click)="selectCoin(coin)">
+            <ion-grid class="list-border">
                 <ion-row>
                     <ion-col>
-                        <h2>{{ coin.name }}</h2>
+                        <span class="coin-name">{{ coin.name }}</span>
+                    </ion-col>
+                    <ion-col class="check-icon">
+                        <span><ion-icon name="checkmark"></ion-icon></span>
                     </ion-col>
                 </ion-row>
             </ion-grid>

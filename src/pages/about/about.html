@@ -6,15 +6,47 @@
     <ion-title>Coin Watch</ion-title>
   </ion-navbar>
 </ion-header>
+
 <ion-content>
 
-  <ion-card>
-    <ion-card-header>
-    </ion-card-header>
-    <ion-card-content>
-      <canvas #lineCanvas></canvas>
-    </ion-card-content>
-  </ion-card>
+  <ion-list no-lines class="list-background">
 
+
+    <button class="list-item" ion-item detail-none *ngFor="let coin of coins" (click)="goToCoinPage(coin)">
+      <ion-grid>
+        <ion-row>
+          <ion-col>
+            <h2>{{ coin.name }}</h2>
+            <p>{{ coin.ticker }}</p>
+          </ion-col>
+          <ion-col>
+            <ion-row >
+              <ion-col style="text-align: left; overflow: hidden">
+                <!--<span class="list-span"><strong>$ {{ coin.price_usd }}</strong></span>-->
+              </ion-col>
+              <ion-col style="text-align: right">
+                <span class="list-span">$ {{ coin.price_usd }}</span>
+                <span class="list-span" *ngIf=" coin.change == 'positive'" style="color: #68d4c3;"><strong>{{ coin.percentage_change }}% &nbsp; <ion-icon name="arrow-round-up"></ion-icon></strong></span>
+                <span class="list-span" *ngIf=" coin.change == 'negative'" style="color: #e65590;"><strong>{{ coin.percentage_change }}%  &nbsp;<ion-icon name="arrow-round-down"></ion-icon></strong></span>
+                <span class="list-span" *ngIf=" coin.change == 'no change'" style="color: grey;"><strong>{{ coin.percentage_change }}%</strong></span>
+                <!--<span *ngIf=" coin.change == 'positive'" style="color: #68d4c3"> + {{ coin.price_change }} </span>-->
+                <!--<span *ngIf=" coin.change == 'negative'" style="color: #e65590"> {{ coin.price_change }}</span>-->
+                <!--<span *ngIf=" coin.change == 'no change'" style="color: grey"> {{ coin.price_change }}</span>-->
+              </ion-col>
+            </ion-row>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+
+    </button>
+
+  </ion-list>
+
+  <ion-infinite-scroll (ionInfinite)="$event.waitFor(doInfinite())">
+    <ion-infinite-scroll-content
+            loadingSpinner="crescent"
+            loadingText="Loading more data...">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
 
 </ion-content>

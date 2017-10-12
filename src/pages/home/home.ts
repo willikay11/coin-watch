@@ -26,7 +26,7 @@ export class HomePage {
 
     loading.present();
 
-    this.http.get('/coin-watch-server/api/coins')
+    this.http.get('/coin-watch-server/api/getMyCoins/1')
         .map(res => res.json())
         .subscribe(data => {
           loading.dismiss();

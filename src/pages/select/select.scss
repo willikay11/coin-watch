@@ -1,7 +1,52 @@
 page-select {
+
+  .header-text{
+    margin-left: 15px;
+    margin-right: 15px;
+    text-align: center;
+    p{
+      color: #2980B9;
+      font-size: 15px;
+    }
+  }
+
+  .search-container{
+    margin-left: 15px;
+    margin-right: 15px;
+    margin-bottom: 15px;
+  }
+
+  .list-button{
+    margin-top: -10px;
+    margin-bottom: -10px;
+  }
+
   .list-select-coin{
+    background-color: #2ec95c;
+  }
+
+  .coin-name{
+    color: #d3d5d6;
+    font-weight: 800;
+  }
+
+  .list-border{
     border-style: solid;
-    border-color: #0000ff;
+    border-width: 1px;
+    border-color: #d3d5d6;
+    border-radius: 2px;
+  }
+
+  .selected-coin{
+    background: #2980B9;
+    .coin-name{
+      color: white;
+    }
+  }
+
+  .check-icon{
+    text-align: right;
+    color: white;
   }
 
   .selected-items{
@@ -11,5 +56,16 @@ page-select {
     margin: inherit;
     text-align: center;
     color: white;
+  }
+
+  .search-input{
+    border-radius: 25px;
+    border-style: solid;
+    border-width: 1px;
+    border-color: #d3d5d6;
+    $text-input-highlight-color-invalid: #fffff;
+    input{
+      margin: 6px 8px;
+    }
   }
 }

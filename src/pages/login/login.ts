@@ -18,10 +18,23 @@ export class LoginPage {
     @ViewChild('password') password;
 
     constructor(private alertCtrl: AlertController, private fire:AngularFireAuth,public navCtrl: NavController, public navParams: NavParams, public http: Http) {
+
+    }
+
+    ionViewWillEnter(){
+        let vm = this;
+
+        this.fire.auth.onAuthStateChanged(function(user) {
+            if (user) {
+                vm.navCtrl.setRoot( SelectPage );
+            } else {
+                console.log("no user");
+                // No user is signed in.
+            }
+        });
     }
 
     ionViewDidLoad() {
-        console.log('ionViewDidLoad LoginPage');
     }
 
     alert(message: string) {

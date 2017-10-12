@@ -1,23 +1,29 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, AlertController, LoadingController } from 'ionic-angular';
-import { AngularFireAuth } from 'angularfire2/auth';
+import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
 import { Http } from '@angular/http';
-import {TabsPage} from "../tabs/tabs";
+import { TabsPage } from "../tabs/tabs";
+import { SearchService } from "../search/service";
+import { Subject } from "rxjs";
 
 @IonicPage()
 
 @Component({
     selector: 'page-select',
     templateUrl: 'select.html',
+    providers: [SearchService]
 })
 
 export class SelectPage {
     coins: any;
     showNextButton: boolean;
     selectedCoins = [];
+    selected: boolean;
+    search: any;
+    searchTerm$ = new Subject<string>();
 
-    constructor(private alertCtrl: AlertController, private fire: AngularFireAuth, public navCtrl: NavController, public navParams: NavParams, public loadingCtrl: LoadingController, public http: Http) {
+    constructor(public navCtrl: NavController, public navParams: NavParams, public loadingCtrl: LoadingController, public http: Http, private searchService: SearchService) {
         this.showNextButton = false;
+        this.selected = true;
 
         let loading = this.loadingCtrl.create({
             spinner: 'crescent',
@@ -35,6 +41,12 @@ export class SelectPage {
             .subscribe(data => {
                 loading.dismiss();
                 this.coins = data.data;
+            });
+
+        this.searchService.search(this.searchTerm$)
+            .subscribe(results => {
+                loading.dismiss();
+                this.coins = results.data;
             });
     }
 
