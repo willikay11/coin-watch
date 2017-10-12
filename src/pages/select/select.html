@@ -1,0 +1,29 @@
+<ion-content>
+
+    <h4>Please select atleast 5 coins before you continue</h4>
+
+    <ion-list no-lines class="list-background">
+
+        <button class="list-select-coin" ion-item detail-none *ngFor="let coin of coins" (click)="selectCoin(coin)">
+            <ion-grid>
+                <ion-row>
+                    <ion-col>
+                        <h2>{{ coin.name }}</h2>
+                    </ion-col>
+                </ion-row>
+            </ion-grid>
+
+        </button>
+
+    </ion-list>
+
+    <ion-footer style="position: fixed">
+        <ion-toolbar *ngIf="selectedCoins.length >= 5">
+            <button ion-button full (click)="addSelectedCoins()">Next</button>
+        </ion-toolbar>
+        <ion-toolbar *ngIf="selectedCoins.length > 0 && selectedCoins.length < 5">
+            <p class="selected-items">{{ selectedCoins.length}} coins selected</p>
+        </ion-toolbar>
+    </ion-footer>
+
+</ion-content>

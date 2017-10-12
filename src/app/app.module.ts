@@ -15,6 +15,7 @@ import { AngularFireModule } from "angularfire2";
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { RegisterPage } from "../pages/register/register";
 import {LoginPage} from "../pages/login/login";
+import {SelectPage} from "../pages/select/select";
 
 const firebaseAuth  = {
   apiKey: "AIzaSyDmj393-JYh_v_6WbMP-_-zgJKxw2DSUes",
@@ -33,7 +34,8 @@ const firebaseAuth  = {
     HomePage,
     TabsPage,
     RegisterPage,
-    LoginPage
+    LoginPage,
+    SelectPage
   ],
   imports: [
     BrowserModule,
@@ -50,7 +52,8 @@ const firebaseAuth  = {
     HomePage,
     TabsPage,
     RegisterPage,
-    LoginPage
+    LoginPage,
+    SelectPage
   ],
   providers: [
     StatusBar,
