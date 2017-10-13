@@ -5,6 +5,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { TabsPage } from '../pages/tabs/tabs';
 import { LoginPage } from "../pages/login/login";
+import { AngularFireAuth } from 'angularfire2/auth';
 
 @Component({
   templateUrl: 'app.html'
@@ -14,14 +15,15 @@ export class MyApp {
 
   rootPage: any = LoginPage;
 
-  pages: Array<{title: string, component: any}>;
+  pages: Array<{title: string, component: any, logout: boolean}>;
 
-  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
+  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen, private fire:AngularFireAuth) {
     this.initializeApp();
 
     // used for an example of ngFor and navigation
     this.pages = [
-      { title: 'Home', component: TabsPage },
+      { title: 'Home', component: TabsPage, logout: false },
+      { title: 'Logout', component: LoginPage, logout: true },
       // { title: 'List', component: ListPage }
     ];
 
@@ -37,9 +39,19 @@ export class MyApp {
   }
 
   openPage(page) {
-    // Reset the content nav to have just this page
-    // we wouldn't want the back button to show in this scenario
-    this.nav.setRoot(page.component);
+    if(page.logout)
+    {
+      this.fire.auth.signOut();
+
+      this.nav.setRoot(page.component);
+    }
+    else
+    {
+      // Reset the content nav to have just this page
+      // we wouldn't want the back button to show in this scenario
+      this.nav.setRoot(page.component);
+    }
+
   }
 
 }

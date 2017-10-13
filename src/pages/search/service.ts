@@ -19,7 +19,7 @@ export class SearchService {
 
     searchEntries(term) {
         return this.http
-            .get('/coin-watch-server/api/search/coin/' + term)
+            .get('http://coin-watch.ga/api/search/coin/' + term)
             .map(res => res.json());
     }
 }

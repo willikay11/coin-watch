@@ -3,13 +3,12 @@
   "app_id": "",
   "type": "ionic-angular",
   "integrations": {
-    "gulp": {}
+    "gulp": {},
+    "cordova": {}
   },
   "watchPatterns": [
     "scss/**/*"
   ],
-  "proxies": [{
-    "path": "/coin-watch-server",
-    "proxyUrl": "http://coin-watch.app"
-  }]
+  "proxies": [
+  ]
 }

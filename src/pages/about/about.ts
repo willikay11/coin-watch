@@ -27,7 +27,7 @@ export class AboutPage {
 
     loading.present();
 
-    this.http.get('/coin-watch-server/api/coins')
+    this.http.get('http://coin-watch.ga/api/coins')
         .map(res => res.json())
         .subscribe(data => {
           loading.dismiss();
@@ -40,7 +40,7 @@ export class AboutPage {
 
     return new Promise((resolve) => {
 
-      this.http.get('/coin-watch-server/api/coins' + this.nextPage)
+      this.http.get('http://coin-watch.ga/api/coins' + this.nextPage)
           .map(res => res.json())
           .subscribe(data => {
 

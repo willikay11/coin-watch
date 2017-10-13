@@ -27,10 +27,20 @@ export class CoinPage {
   min: any;
   max: any;
   last: any;
+  tests: any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public loadingCtrl: LoadingController, public http: Http) {
     this.coinName = this.navParams.get('coinName');
     this.id = this.navParams.get('id');
+
+    for (let i = 1; i < 10; i++)
+    {
+      // this.tests = {
+      //   'name': 'Test'+i
+      // }
+    }
+
+    // console.log(this.tests);
   }
 
   ionViewDidLoad() {
@@ -46,7 +56,7 @@ export class CoinPage {
 
     loading.present();
     
-    this.http.get('/coin-watch-server/api/coin/'+this.id)
+    this.http.get('http://coin-watch.ga/api/coin/'+this.id)
         .map(res => res.json())
         .subscribe(data => {
           loading.dismiss();

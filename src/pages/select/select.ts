@@ -4,6 +4,7 @@ import { Http } from '@angular/http';
 import { TabsPage } from "../tabs/tabs";
 import { SearchService } from "../search/service";
 import { Subject } from "rxjs";
+import { AngularFireAuth } from 'angularfire2/auth';
 
 @IonicPage()
 
@@ -21,7 +22,7 @@ export class SelectPage {
     search: any;
     searchTerm$ = new Subject<string>();
 
-    constructor(public navCtrl: NavController, public navParams: NavParams, public loadingCtrl: LoadingController, public http: Http, private searchService: SearchService) {
+    constructor(public navCtrl: NavController, public navParams: NavParams, public loadingCtrl: LoadingController, public http: Http, private searchService: SearchService, private fire: AngularFireAuth) {
         this.showNextButton = false;
         this.selected = true;
 
@@ -36,7 +37,7 @@ export class SelectPage {
 
         loading.present();
 
-        this.http.get('/coin-watch-server/api/getCoinsForSelect')
+        this.http.get('http://coin-watch.ga/api/getCoinsForSelect')
             .map(res => res.json())
             .subscribe(data => {
                 loading.dismiss();
@@ -68,9 +69,9 @@ export class SelectPage {
 
     addSelectedCoins()
     {
-        this.http.post('/coin-watch-server/api/store/selectedCoins', {
+        this.http.post('http://coin-watch.ga/api/store/selectedCoins', {
             coins: this.selectedCoins,
-            userId: 1
+            uid: this.fire.auth.currentUser.uid
         })
             .map(res => res.json())
             .subscribe(data => {

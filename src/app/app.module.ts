@@ -16,6 +16,7 @@ import { AngularFireAuthModule } from 'angularfire2/auth';
 import { RegisterPage } from "../pages/register/register";
 import {LoginPage} from "../pages/login/login";
 import {SelectPage} from "../pages/select/select";
+import { SQLite } from '@ionic-native/sqlite';
 
 const firebaseAuth  = {
   apiKey: "AIzaSyDmj393-JYh_v_6WbMP-_-zgJKxw2DSUes",
@@ -58,7 +59,8 @@ const firebaseAuth  = {
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    SQLite
   ]
 })
 export class AppModule {}

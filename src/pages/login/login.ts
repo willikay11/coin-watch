@@ -3,9 +3,9 @@ import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angu
 import { Http } from '@angular/http';
 import 'rxjs/add/operator/map';
 import { AngularFireAuth } from 'angularfire2/auth';
-import {RegisterPage} from "../register/register";
-import {TabsPage} from "../tabs/tabs";
-import {SelectPage} from "../select/select";
+import { RegisterPage } from "../register/register";
+import { TabsPage } from "../tabs/tabs";
+import { SelectPage } from "../select/select";
 
 @IonicPage()
 @Component({
@@ -16,8 +16,9 @@ export class LoginPage {
 
     @ViewChild('username') user;
     @ViewChild('password') password;
+    userId: number;
 
-    constructor(private alertCtrl: AlertController, private fire:AngularFireAuth,public navCtrl: NavController, public navParams: NavParams, public http: Http) {
+    constructor(private alertCtrl: AlertController, private fire: AngularFireAuth, public navCtrl: NavController, public navParams: NavParams, public http: Http) {
 
     }
 
@@ -26,10 +27,9 @@ export class LoginPage {
 
         this.fire.auth.onAuthStateChanged(function(user) {
             if (user) {
-                vm.navCtrl.setRoot( SelectPage );
+                vm.navCtrl.setRoot( TabsPage );
             } else {
                 console.log("no user");
-                // No user is signed in.
             }
         });
     }
@@ -48,7 +48,7 @@ export class LoginPage {
     signInUser() {
         this.fire.auth.signInWithEmailAndPassword(this.user.value, this.password.value)
             .then( data => {
-                this.http.get('/coin-watch-server/api/checkLogin/'+this.fire.auth.currentUser.email)
+                this.http.get('http://coin-watch.ga/api/checkLogin/'+this.fire.auth.currentUser.email+'/uid/'+this.fire.auth.currentUser.uid)
                     .map(res => res.json())
                     .subscribe(data => {
                         if (data.success)

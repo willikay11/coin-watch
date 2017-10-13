@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import {NavController, LoadingController} from 'ionic-angular';
 import { Http } from '@angular/http';
 import 'rxjs/add/operator/map';
+import { AngularFireAuth } from 'angularfire2/auth';
 
 @Component({
   selector: 'page-home',
@@ -13,7 +14,7 @@ export class HomePage {
   nextData: any;
   nextPage: any;
 
-  constructor(public navCtrl: NavController, public http: Http, public loadingCtrl: LoadingController) {
+  constructor(public navCtrl: NavController, public http: Http, public loadingCtrl: LoadingController, private fire:AngularFireAuth) {
 
     let loading = this.loadingCtrl.create({
       spinner: 'crescent',
@@ -26,7 +27,7 @@ export class HomePage {
 
     loading.present();
 
-    this.http.get('/coin-watch-server/api/getMyCoins/1')
+    this.http.get('http://coin-watch.ga/api/getMyCoins/'+this.fire.auth.currentUser.uid)
         .map(res => res.json())
         .subscribe(data => {
           loading.dismiss();
@@ -39,7 +40,7 @@ export class HomePage {
 
     return new Promise((resolve) => {
 
-      this.http.get('/coin-watch-server/api/coins' + this.nextPage)
+      this.http.get('http://coin-watch.ga/api/coins/' + this.nextPage)
           .map(res => res.json())
           .subscribe(data => {
 
