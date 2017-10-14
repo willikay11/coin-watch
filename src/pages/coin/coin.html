@@ -10,67 +10,62 @@
     </ion-navbar>
 </ion-header>
 
-<ion-scroll scrollX="true" style="width:100vw; height:50px; margin-top: 120px" >
-    <ion-row nowrap class="headerChip">
-        <div>
-            <ion-chip>
-                <ion-label>Name</ion-label>
-                <div></div>
-            </ion-chip>
-            <ion-chip>
-                <ion-label>Name</ion-label>
-                <div></div>
-            </ion-chip>
-            <ion-chip>
-                <ion-label>Name</ion-label>
-                <div></div>
-            </ion-chip>
-            <ion-chip>
-                <ion-label>Name</ion-label>
-                <div></div>
-            </ion-chip>
-            <ion-chip>
-                <ion-label>Name</ion-label>
-                <div></div>
-            </ion-chip>
-            <ion-chip>
-                <ion-label>Name</ion-label>
-                <div></div>
-            </ion-chip>
-            <ion-chip>
-                <ion-label>Name</ion-label>
-                <div></div>
-            </ion-chip>
-            <ion-chip>
-                <ion-label>Name</ion-label>
-                <div></div>
-            </ion-chip>
-            <ion-chip>
-                <ion-label>Name</ion-label>
-                <div></div>
-            </ion-chip>
-            <ion-chip>
-                <ion-label>Name</ion-label>
-                <div></div>
-            </ion-chip>
-            <ion-chip>
-                <ion-label>Name</ion-label>
-                <div></div>
-            </ion-chip>
-            <ion-chip>
-                <ion-label>Name</ion-label>
-                <div></div>
-            </ion-chip>
-        </div>
-    </ion-row>
-</ion-scroll>
 
 <ion-content>
 
-    <ion-card-header>
-    </ion-card-header>
+    <ion-scroll scrollX="true" style="width: 100%; height: 90px">
+        <div class="inner">
+            <ion-card *ngFor="let test of tests">
+                <div class="coin">
+                    <ion-row>
+                        <ion-col>
+                            <p>BTC</p>
+                        </ion-col>
+                        <ion-col>
+                            <p style="text-align: right">$ 6,780</p>
+                        </ion-col>
+                    </ion-row>
+                    <ion-row>
+                        <ion-col>
+                            <p>Bitcoin</p>
+                        </ion-col>
+                        <ion-col>
+                            <p style="text-align: right">3%
+                                <ion-icon name="arrow-round-up"></ion-icon>
+                            </p>
+                        </ion-col>
+                    </ion-row>
+                </div>
+            </ion-card>
+        </div>
+    </ion-scroll>
+
+    <div class="ion-holder">
+        <ion-card>
+            <div class="notify-container">
+                <ion-row>
+                    <span>Notify me when price is:</span>
+                </ion-row>
+                <ion-row>
+                    <ion-col>
+                        <ion-item>
+                            <ion-label color="primary">Below: </ion-label>
+                            <ion-input type="number"></ion-input>
+                        </ion-item>
+                    </ion-col>
+                    <ion-col>
+                        <ion-item>
+                            <ion-label color="primary">Above: </ion-label>
+                            <ion-input type="number"></ion-input>
+                        </ion-item>
+                    </ion-col>
+                </ion-row>
+            </div>
+        </ion-card>
+    </div>
+
     <ion-card-content>
-      <canvas #lineCanvas></canvas>
+        <canvas #lineCanvas></canvas>
         <ion-row col-12>
             <ion-col style="text-align: center">
                 <span style="font-size: 14px; color: grey; display: block;">LAST PRICE</span>

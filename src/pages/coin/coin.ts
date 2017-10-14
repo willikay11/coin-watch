@@ -27,7 +27,7 @@ export class CoinPage {
   min: any;
   max: any;
   last: any;
-  tests: any;
+  tests: any = [];
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public loadingCtrl: LoadingController, public http: Http) {
     this.coinName = this.navParams.get('coinName');
@@ -35,12 +35,8 @@ export class CoinPage {
 
     for (let i = 1; i < 10; i++)
     {
-      // this.tests = {
-      //   'name': 'Test'+i
-      // }
+      this.tests.push(i);
     }
-
-    // console.log(this.tests);
   }
 
   ionViewDidLoad() {
